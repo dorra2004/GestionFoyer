@@ -1,7 +1,9 @@
 package tn.esprit.gestionfoyer.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import tn.esprit.gestionfoyer.entity.Foyer;
 import tn.esprit.gestionfoyer.entity.Universite;
 import tn.esprit.gestionfoyer.repository.FoyerRepository;
@@ -47,12 +49,14 @@ public class FoyerServiceImpl implements IFoyerService {
     @Override
     public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
         Universite universite = universiteRepository.findById(idUniversite)
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "Universite introuvable avec l'id : " + idUniversite
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Université introuvable avec l'id : " + idUniversite
                 ));
 
         if (universite.getFoyer() != null) {
-            throw new IllegalStateException(
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
                     "L'université " + idUniversite + " est déjà associée à un foyer"
             );
         }

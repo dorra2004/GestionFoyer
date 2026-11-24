@@ -3,7 +3,9 @@ package tn.esprit.gestionfoyer.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import tn.esprit.gestionfoyer.entity.Bloc;
 import tn.esprit.gestionfoyer.entity.Foyer;
 import tn.esprit.gestionfoyer.entity.Universite;
@@ -14,6 +16,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(properties = {
         "spring.datasource.url=jdbc:h2:mem:gestionfoyer;DB_CLOSE_DELAY=-1",
@@ -58,5 +61,15 @@ class FoyerServiceImplTest {
         Bloc savedBloc = blocRepository.findAll().get(0);
         assertEquals(savedFoyer.getIdFoyer(), savedBloc.getFoyer().getIdFoyer());
         assertEquals(savedFoyer.getIdFoyer(), universite.getFoyer().getIdFoyer());
+    }
+
+    @Test
+    void reportsNotFoundWhenUniversityDoesNotExist() {
+        ResponseStatusException exception = assertThrows(
+                ResponseStatusException.class,
+                () -> foyerService.ajouterFoyerEtAffecterAUniversite(new Foyer(), 1L)
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
     }
 }
