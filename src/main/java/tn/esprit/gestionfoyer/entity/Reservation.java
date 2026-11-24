@@ -12,7 +12,6 @@ import java.util.Set;
 @Setter
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String idReservation;
     @Temporal(TemporalType.DATE)
     private Date anneeUniversitaire;

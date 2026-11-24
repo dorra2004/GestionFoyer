@@ -82,6 +82,7 @@ class RestEndpointsTest {
         assertEndpoint(get("/Foyer/retrieve-all-foyers"), status().isOk());
         assertEndpoint(get("/Foyer/retrieve-foyer/1"), status().isOk());
         assertEndpoint(jsonPost("/Foyer/add-foyer"), status().isCreated());
+        assertEndpoint(jsonPost("/Foyer/ajouter-foyer-et-affecter-a-universite/1"), status().isCreated());
         assertEndpoint(jsonPut("/Foyer/modify-foyer"), status().isOk());
         assertEndpoint(delete("/Foyer/remove-foyer/1"), status().isNoContent());
     }
@@ -91,6 +92,8 @@ class RestEndpointsTest {
         assertEndpoint(get("/Reservation/retrieve-all-reservations"), status().isOk());
         assertEndpoint(get("/Reservation/retrieve-reservation/test-id"), status().isOk());
         assertEndpoint(jsonPost("/Reservation/add-reservation"), status().isCreated());
+        assertEndpoint(post("/Reservation/ajouter-reservation/1/12345678"), status().isCreated());
+        assertEndpoint(put("/Reservation/annuler-reservation/12345678"), status().isOk());
         assertEndpoint(jsonPut("/Reservation/modify-reservation"), status().isOk());
         assertEndpoint(delete("/Reservation/remove-reservation/test-id"), status().isNoContent());
     }

@@ -10,7 +10,7 @@ import tn.esprit.gestionfoyer.service.IChambreService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chambre")
+@RequestMapping("/Chambre")
 public class ChambreRestController {
     @Autowired
 

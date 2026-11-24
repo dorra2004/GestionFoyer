@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
+    java.util.Optional<Etudiant> findByCin(Long cin);
+
     List<Etudiant> findByDateNaissanceBetween(Date first_date, Date second_date);
     List<Etudiant> findByDateNaissanceLessThan(Date date);
 }

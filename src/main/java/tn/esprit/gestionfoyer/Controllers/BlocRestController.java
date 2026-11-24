@@ -47,4 +47,10 @@ public class BlocRestController {
     public Bloc modifyBloc(@RequestBody Bloc bloc) {
         return blocService.modifyBloc(bloc);
     }
+
+    @PutMapping("/affecter-Chambre-a-bloc/{blocId}")
+    public void affecterChambreABloc(@PathVariable("blocId") Long blocId) {
+        blocService.affecterChambreABloc(blocId);
+    }
 }
+

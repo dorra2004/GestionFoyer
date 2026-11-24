@@ -17,7 +17,9 @@ public class Bloc {
     private String nomBloc;
     private Long capaciteBloc;
     @ManyToOne
+    @JsonIgnore
     private Foyer foyer;
     @OneToMany(mappedBy = "bloc", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Chambre> chambres;
 }

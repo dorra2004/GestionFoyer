@@ -23,5 +23,6 @@ public class Etudiant {
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     @ManyToMany
+    @JsonIgnore
     private Set<Reservation> reservations;
 }

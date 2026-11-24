@@ -15,4 +15,6 @@ public interface IBlocService {
     void removeBloc(Long id);
 
     Bloc modifyBloc(Bloc bloc);
+
+    void affecterChambreABloc(Long blocId);
 }

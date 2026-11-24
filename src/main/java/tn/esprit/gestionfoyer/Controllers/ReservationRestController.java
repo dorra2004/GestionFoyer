@@ -37,6 +37,19 @@ public class ReservationRestController {
         return reservationService.addReservation(reservation);
     }
 
+    @PostMapping("/ajouter-reservation/{idBloc}/{cinEtudiant}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation ajouterReservation(
+            @PathVariable("idBloc") long idBloc,
+            @PathVariable("cinEtudiant") long cinEtudiant) {
+        return reservationService.ajouterReservation(idBloc, cinEtudiant);
+    }
+
+    @PutMapping("/annuler-reservation/{cinEtudiant}")
+    public Reservation annulerReservation(@PathVariable("cinEtudiant") long cinEtudiant) {
+        return reservationService.annulerReservation(cinEtudiant);
+    }
+
     @DeleteMapping("/remove-reservation/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeReservation(@PathVariable("id") String id) {

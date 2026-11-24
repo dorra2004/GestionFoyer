@@ -40,4 +40,9 @@ public class BlocServiceImpl implements IBlocService {
     public Bloc modifyBloc(Bloc bloc) {
         return blocRepository.save(bloc);
     }
+
+    @Override
+    public void affecterChambreABloc(Long blocId) {
+        retrieveBloc(blocId);
+    }
 }

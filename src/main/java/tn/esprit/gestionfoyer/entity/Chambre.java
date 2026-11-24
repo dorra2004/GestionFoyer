@@ -20,5 +20,6 @@ public class Chambre {
     @ManyToOne
     private Bloc bloc;
     @OneToMany(mappedBy = "chambre", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Reservation> reservations;
 }
